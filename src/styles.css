@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.auth_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.decoration_picture {
+ /* border: solid 1px black; */
+ border-radius: 24px 0 0 24px;
+ width: 980px;
+ height: 900px;
+}
+
+.form_wrapper {
+  width: 456px;
+  background-color: white;
+  border-radius: 0 24px 24px 0;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 105px;
+  border: solid 1px gray;
+}
