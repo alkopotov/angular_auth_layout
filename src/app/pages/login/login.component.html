@@ -1,12 +1,24 @@
-<div class="form_wrapper">
+<form class="form_wrapper">
   <h1>Nice to see you again</h1>
 
+ 
+
+ 
   <label>Login
-    <input type="text" />
+    <input type="text" placeholder="Email"/>
   </label>
 
   <label>Password
-    <input type="password" /> 
+    <input type="password" placeholder="Password"/> 
   </label>
 
-</div>
+  <a routerLink="/reset">Forgot password?</a>
+
+
+  <input type="submit" value="Sign in">
+
+  <hr>
+
+  <p>Don't have an account? <a routerLink="/register">Sign up</a></p>
+
+</form>
