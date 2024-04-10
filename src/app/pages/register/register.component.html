@@ -1,1 +1,42 @@
-<p>register works!</p>
+<form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="form_wrapper">
+  <h1>{{headerText}}</h1>
+
+ <section class="input_wrapper">
+    <label>Login
+      <input type="text" placeholder="Email" formControlName="login"/>
+      <p class="error" *ngIf="dataForm.get('login')?.invalid && dataForm.get('login')?.touched">
+        <span *ngIf="dataForm.get('login')?.hasError('required')">login is required</span>
+        <span *ngIf="dataForm.get('login')?.hasError('pattern')">email address not valid</span>
+      </p>
+    </label>
+
+    <label>Password
+      <input type="password" placeholder="Password" formControlName="password"/>
+      <p class="error" *ngIf="dataForm.get('password')?.invalid && dataForm.get('password')?.touched">
+        <span *ngIf="dataForm.get('password')?.hasError('required')">password is required</span>
+        <span *ngIf="dataForm.get('password')?.hasError('minlength')">8 characters min</span>
+        <span *ngIf="dataForm.get('password')?.hasError('pattern') && !dataForm.get('password')?.hasError('minlength')">one uppercase and one digit required</span>
+      </p>
+    </label>
+
+    <label>Type password again
+      <input type="password" placeholder="Password" formControlName="repeatPassword"/>
+      <p class="error" *ngIf="dataForm.get('repeatPassword')?.touched && dataForm?.errors || dataForm.get('repeatPassword')?.invalid">
+        <span *ngIf="dataForm.get('repeatPassword')?.hasError('required') && dataForm.get('repeatPassword')?.touched">repeat password</span>
+        <span *ngIf="dataForm?.errors?.['passwordsNotMatch'] && dataForm.get('repeatPassword')?.touched && !dataForm.get('repeatPassword')?.hasError('required')">passwords not matching</span>
+      </p>
+    </label>
+
+    <a routerLink="/reset">Forgot password?</a>
+
+  </section>
+
+
+
+  <input type="submit" value="Sign up">
+
+  <hr>
+
+  <p><a routerLink="/login">Sign in</a></p>
+
+</form>

@@ -1,1 +1,25 @@
-<p>reset works!</p>
+<form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="form_wrapper">
+  <h1>{{headerText}}</h1>
+
+ <section class="input_wrapper">
+    <label>Login
+      <input type="text" placeholder="Enter email" formControlName="login"/>
+      <p class="error" *ngIf="dataForm.get('login')?.invalid && dataForm.get('login')?.touched">
+        <span *ngIf="dataForm.get('login')?.hasError('required')">login is required</span>
+        <span *ngIf="dataForm.get('login')?.hasError('pattern')">email address not valid</span>
+      </p>
+    </label>
+  </section>
+
+
+  
+
+
+  <input type="submit" value="Reset">
+
+  <hr>
+
+  <p><a routerLink="/register">Sign in</a></p>
+
+</form>
+

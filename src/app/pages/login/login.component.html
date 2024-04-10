@@ -1,18 +1,28 @@
-<form class="form_wrapper">
-  <h1>Nice to see you again</h1>
+<form [formGroup]="dataForm" (ngSubmit)="onSubmit()" class="form_wrapper">
+  <h1>{{headerText}}</h1>
 
- 
+ <section class="input_wrapper">
+    <label>Login
+      <input type="text" placeholder="Enter email" formControlName="login"/>
+      <p class="error" *ngIf="dataForm.get('login')?.invalid && dataForm.get('login')?.touched">
+        <span *ngIf="dataForm.get('login')?.hasError('required')">login is required</span>
+        <span *ngIf="dataForm.get('login')?.hasError('pattern')">email address not valid</span>
+      </p>
+    </label>
 
- 
-  <label>Login
-    <input type="text" placeholder="Email"/>
-  </label>
+    <label>Password
+      <input type="password" placeholder="Password" formControlName="password"/>
+      <p class="error" *ngIf="dataForm.get('password')?.invalid && dataForm.get('password')?.touched">
+        <span *ngIf="dataForm.get('password')?.hasError('required')">password is required</span>
+      </p>
+    </label>
 
-  <label>Password
-    <input type="password" placeholder="Password"/> 
-  </label>
+    <a routerLink="/reset">Forgot password?</a>
 
-  <a routerLink="/reset">Forgot password?</a>
+  </section>
+
+
+  
 
 
   <input type="submit" value="Sign in">
