@@ -120,6 +120,9 @@ input[type="text"], input[type="password"] {
   /* margin-bottom: 20px; */
 }
 
+input[type="submit"] {
+  cursor: pointer;
+}
 .error {
   font-family: 'Roboto', sans-serif;
   margin-top: -8px;

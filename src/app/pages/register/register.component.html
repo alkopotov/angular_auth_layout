@@ -2,11 +2,36 @@
   <h1>{{headerText}}</h1>
 
  <section class="input_wrapper">
-    <label>Login
-      <input type="text" placeholder="Email" formControlName="login"/>
-      <p class="error" *ngIf="dataForm.get('login')?.invalid && dataForm.get('login')?.touched">
-        <span *ngIf="dataForm.get('login')?.hasError('required')">login is required</span>
-        <span *ngIf="dataForm.get('login')?.hasError('pattern')">email address not valid</span>
+
+    <label>First Name
+      <input type="text" placeholder="First name" formControlName="first_name"/>
+      <p class="error" *ngIf="dataForm.get('first_name')?.invalid && dataForm.get('firstName')?.touched">
+      <span *ngIf="dataForm.get('first_name')?.hasError('required')">firstname is required</span>
+      <span *ngIf="dataForm.get('first_name')?.hasError('pattern')">letters only</span>
+      </p>
+    </label>
+
+    <label>Last Name
+      <input type="text" placeholder="Last name" formControlName="last_name"/>
+      <p class="error" *ngIf="dataForm.get('last_name')?.invalid && dataForm.get('login')?.touched">
+      <span *ngIf="dataForm.get('last_name')?.hasError('required')">lastname is required</span>
+      <span *ngIf="dataForm.get('last_name')?.hasError('pattern')">letters only</span>
+      </p>
+    </label>
+
+    <label>Email
+      <input type="text" placeholder="Email" formControlName="email"/>
+      <p class="error" *ngIf="dataForm.get('email')?.invalid && dataForm.get('email')?.touched">
+        <span *ngIf="dataForm.get('email')?.hasError('required')">email is required</span>
+        <span *ngIf="dataForm.get('email')?.hasError('pattern')">email address not valid</span>
+      </p>
+    </label>
+
+    <label>Username
+      <input type="text" placeholder="Username" formControlName="username"/>
+      <p class="error" *ngIf="dataForm.get('username')?.invalid && dataForm.get('username')?.touched">
+        <span *ngIf="dataForm.get('username')?.hasError('required')">username is required</span>
+        <span *ngIf="dataForm.get('username')?.hasError('minlength')">6 characters min</span>
       </p>
     </label>
 

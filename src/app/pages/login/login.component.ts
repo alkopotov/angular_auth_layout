@@ -13,7 +13,6 @@ import { RouterLink } from '@angular/router';
 export class LoginComponent implements OnInit{
 
 
-
   public headerText: string = 'Nice to see you again';
 
   public dataForm: FormGroup = new FormGroup({
