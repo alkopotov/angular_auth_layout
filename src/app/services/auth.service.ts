@@ -9,12 +9,17 @@ interface Token {
   access: string,
 }
 
-interface User {
+interface UserRegister {
   username: string,
   password: string,
   email: string,
   first_name: string,
   last_name: string
+}
+
+interface UserLogin {
+  username: string,
+  password: string
 }
 
 @Injectable({
@@ -29,7 +34,7 @@ export class AuthService implements CanActivate {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(userData: User): Observable<Token> {
+  login(userData: UserLogin): Observable<Token> {
     return this.http.post<Token>('http://212.8.247.94:800/auth_api/token', userData)
       .pipe(
         tap(
@@ -40,7 +45,34 @@ export class AuthService implements CanActivate {
         )
       )
     }
-
+  
+  register(userData: any): Observable<any> {
+    let user: UserRegister = {
+      username: userData.username,
+      password: userData.password,
+      email: userData.email,
+      first_name: userData.first_name,
+      last_name: userData.last_name
+    }
+    
+    return this.http.post<any>('http://212.8.247.94:800/auth_api/register', user)
+      .pipe(
+        tap(
+          (register: any) => {
+           
+            if (!register) {
+              return
+            }
+            let token: Token = {
+              refresh: register['refresh_token'],
+              access: register['access_token']
+            }
+            localStorage.setItem('authToken', JSON.stringify(token))
+            this.setToken(token['access'])
+          }
+        )
+      )
+  }
   
   setToken(token: null |string) {
     this.token = token
@@ -55,9 +87,9 @@ export class AuthService implements CanActivate {
   }
 
   canActivate(): boolean {
+    
     if (this.isAuth()) {
-      this.router.navigate(['/posts'])
-      return true 
+      return true
     } else {
       this.router.navigate(['/login'])
       return false

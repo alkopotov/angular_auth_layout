@@ -1,8 +1,8 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { log } from 'node:console';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -12,15 +12,19 @@ import { log } from 'node:console';
   // styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit{
+
   public headerText: string = 'Now create your account';
 
   public dataForm: FormGroup = new FormGroup({
-    login: new FormControl(''),
+    first_name: new FormControl(''),
+    last_name: new FormControl(''),
+    email: new FormControl(''),
+    username: new FormControl(''),
     password: new FormControl(''),
     repeatPassword: new FormControl(''),
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.dataForm = this.formBuilder.group({
@@ -45,6 +49,10 @@ export class RegisterComponent implements OnInit{
        console.log('Form is invalid');
        ;
     } else {
+      this.authService.register(this.dataForm.value).subscribe({
+        next: data => this.router.navigate(['login']),
+        error: error => alert("Registration failed")
+      });
       console.log(this.dataForm.value);
       this.dataForm.reset();
     }

@@ -5,7 +5,7 @@
 
     <label>First Name
       <input type="text" placeholder="First name" formControlName="first_name"/>
-      <p class="error" *ngIf="dataForm.get('first_name')?.invalid && dataForm.get('firstName')?.touched">
+      <p class="error" *ngIf="dataForm.get('first_name')?.invalid && dataForm.get('first_name')?.touched">
       <span *ngIf="dataForm.get('first_name')?.hasError('required')">firstname is required</span>
       <span *ngIf="dataForm.get('first_name')?.hasError('pattern')">letters only</span>
       </p>
@@ -13,7 +13,7 @@
 
     <label>Last Name
       <input type="text" placeholder="Last name" formControlName="last_name"/>
-      <p class="error" *ngIf="dataForm.get('last_name')?.invalid && dataForm.get('login')?.touched">
+      <p class="error" *ngIf="dataForm.get('last_name')?.invalid && dataForm.get('last_name')?.touched">
       <span *ngIf="dataForm.get('last_name')?.hasError('required')">lastname is required</span>
       <span *ngIf="dataForm.get('last_name')?.hasError('pattern')">letters only</span>
       </p>

@@ -31,7 +31,7 @@
   top: 0;
 }
 
-.form_wrapper {
+.form_wrapper, .post_list {
   width: 456px;
   background-color: white;
   border-radius: 0 24px 24px 0;
@@ -130,6 +130,15 @@ input[type="submit"] {
   color: red;
   font-weight: 700;
   font-size: 12px;
+}
+.post_list {
+  width: 456px;
+  position: absolute;
+  right: 0;
+}
+
+.post_list h1 {
+  text-align: center;
 }
 
 @media (max-width: 1480px) {

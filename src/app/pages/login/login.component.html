@@ -2,11 +2,11 @@
   <h1>{{headerText}}</h1>
 
  <section class="input_wrapper">
-    <label>Login
-      <input type="text" placeholder="Enter email" formControlName="login"/>
-      <p class="error" *ngIf="dataForm.get('login')?.invalid && dataForm.get('login')?.touched">
-        <span *ngIf="dataForm.get('login')?.hasError('required')">login is required</span>
-        <span *ngIf="dataForm.get('login')?.hasError('pattern')">email address not valid</span>
+    <label>Username
+      <input type="text" placeholder="Username" formControlName="username"/>
+      <p class="error" *ngIf="dataForm.get('username')?.invalid && dataForm.get('username')?.touched">
+        <span *ngIf="dataForm.get('username')?.hasError('required')">username is required</span>
+        
       </p>
     </label>
 

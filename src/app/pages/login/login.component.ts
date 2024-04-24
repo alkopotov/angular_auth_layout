@@ -1,7 +1,8 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,15 +17,15 @@ export class LoginComponent implements OnInit{
   public headerText: string = 'Nice to see you again';
 
   public dataForm: FormGroup = new FormGroup({
-    login: new FormControl(''),
+    username: new FormControl(''),
     password: new FormControl(''),
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.dataForm = this.formBuilder.group({
-      login: ['', [Validators.required, Validators.email, Validators.pattern(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/)]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]],
       },
     );
@@ -35,7 +36,12 @@ export class LoginComponent implements OnInit{
        console.log('Form is invalid');
        ;
     } else {
-      console.log(this.dataForm.value);
+    
+      this.authService.login(this.dataForm.value)
+        .subscribe({
+          next: data => this.router.navigate(['posts']),
+          error: error => alert("Authorization failed")
+        });
       this.dataForm.reset();
     }
   }
